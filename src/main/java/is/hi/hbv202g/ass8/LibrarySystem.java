@@ -34,22 +34,22 @@ public class LibrarySystem {
         users.add(user);
     }
 
-    public Book findBookByTitle(String title) {
+    public Book findBookByTitle(String title) throws UserOrBookDoesNotExistException{
         for (Book book : books) {
             if (book.getTitle().equals(title)) {
                 return book;
             }
         }
-        return null;
+        throw new UserOrBookDoesNotExistException("Book does not exist");
     }
 
-    public User findUserByName(String name) {
+    public User findUserByName(String name) throws UserOrBookDoesNotExistException{
         for (User user : users) {
             if (user.getName().equals(name)) {
                 return user;
             }
         }
-        return null;
+        throw new UserOrBookDoesNotExistException("User does not exist");
     }
 
     public void borrowBook(User user, Book book) {
