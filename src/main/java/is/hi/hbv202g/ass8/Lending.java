@@ -6,7 +6,6 @@ public class Lending {
 
     private Book book;
     private User user;
-
     private LocalDate dueDate;
     public Lending(Book book, User user) {
         this.book = book;

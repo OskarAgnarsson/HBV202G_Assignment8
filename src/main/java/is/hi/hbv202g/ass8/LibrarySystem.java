@@ -15,6 +15,16 @@ public class LibrarySystem {
         lendings = new ArrayList<>();
         users = new ArrayList<>();
     }
+    public void setDefaultBooks() throws EmptyAuthorListException {
+       Author suzanne =  new Author("Suzanne Collins");
+       List<Author> hungergames = new ArrayList<Author>();
+       hungergames.add(suzanne);
+
+       books.add(new Book("The Hunger Games 1", hungergames));
+       books.add(new Book("The Hunger Games 2", hungergames));
+       books.add(new Book("The Hunger Games 3", hungergames));
+
+    }
 
     public void addBookWithTitleAndAuthorList(String title, List<Author> authorList) throws EmptyAuthorListException{
         if (authorList.isEmpty()) {
@@ -58,7 +68,7 @@ public class LibrarySystem {
     }
 
     public void extendLending(FacultyMember facultyMember, Book book, LocalDate newDueDate) {
-        return;
+
     }
 
     public void returnBook(User user, Book book) {
