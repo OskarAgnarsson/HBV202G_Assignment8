@@ -2,7 +2,7 @@ package is.hi.hbv202g.ass8;
 
 import java.util.List;
 
-public class Book  {
+public class Book implements Lendable {
     private String title;
     private List<Author> authors;
 
