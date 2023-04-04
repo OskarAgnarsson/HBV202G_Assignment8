@@ -6,22 +6,36 @@ import java.util.List;
 
 public class LibrarySystem {
 
-    private List<Book> books;
+    private List<Lendable> lendables;
     private List<Lending> lendings;
     private List<User> users;
 
     public LibrarySystem() {
-        books = new ArrayList<>();
+        lendables = new ArrayList<>();
         lendings = new ArrayList<>();
         users = new ArrayList<>();
+    }
+    public void setDefaultBooks() throws EmptyAuthorListException {
+       Author suzanne =  new Author("Suzanne Collins");
+       List<Author> hungergamesauthor = new ArrayList<Author>();
+       hungergamesauthor.add(suzanne);
+       lendables.add(new Book("The Hunger Games", hungergamesauthor));
+       lendables.add(new Book("The Hunger Games: Mockingjay", hungergamesauthor));
+       lendables.add(new Book("The Hunger Games: Cathing Fire", hungergamesauthor));
+
+       Author jkrowling = new Author("J.K Rowling");
+       List<Author> harrypotterauthor = new ArrayList<Author>();
+       harrypotterauthor.add(jkrowling);
+       lendables.add(new Book("Harry Potter and the Philosopher's Stone", harrypotterauthor));
+       lendables.add(new Book("Harry Potter and the Chamber of Secrets", harrypotterauthor));
     }
 
     public void addBookWithTitleAndAuthorList(String title, List<Author> authorList) throws EmptyAuthorListException{
         if (authorList.isEmpty()) {
             throw new EmptyAuthorListException("Author list cannot be empty");
         }
-        Book book = new Book(title, authorList);
-        books.add(book);
+        Lendable lendable = new Book(title, authorList);
+        lendables.add(lendable);
     }
 
     public void addStudentUser(String name, boolean feePaid) {
@@ -34,34 +48,42 @@ public class LibrarySystem {
         users.add(user);
     }
 
-    public Book findBookByTitle(String title) throws UserOrBookDoesNotExistException{
-        for (Book book : books) {
-            if (book.getTitle().equals(title)) {
-                return book;
+    public Lendable findLendableByTitle(String title) throws UserOrLendableDoesNotExistException{
+        for (Lendable lendable : lendables) {
+            if (lendable.getTitle().equals(title)) {
+                return lendable;
             }
         }
-        throw new UserOrBookDoesNotExistException("Book does not exist");
+        throw new UserOrLendableDoesNotExistException("Book does not exist");
     }
 
-    public User findUserByName(String name) throws UserOrBookDoesNotExistException{
+    public User findUserByName(String name) throws UserOrLendableDoesNotExistException {
         for (User user : users) {
             if (user.getName().equals(name)) {
                 return user;
             }
         }
-        throw new UserOrBookDoesNotExistException("User does not exist");
+        throw new UserOrLendableDoesNotExistException("User does not exist");
     }
 
-    public void borrowBook(User user, Book book) {
-        Lending lending = new Lending(book, user);
+    public void borrowLendable(User user, Lendable lendable) {
+        Lending lending = new Lending(lendable, user);
         lendings.add(lending);
     }
 
-    public void extendLending(FacultyMember facultyMember, Book book, LocalDate newDueDate) {
-        return;
+    public void extendLending(Lendable lendable, LocalDate newDueDate) {
+        for(Lending e: lendings){
+            if (e.getLendable() == lendable){
+                e.setDueDate(newDueDate);
+            }
+        }
     }
 
-    public void returnBook(User user, Book book) {
-        return;
+    public void returnLendable(User user, Lendable lendable) {
+        for(Lending e : lendings){
+            if (e.getLendable() == lendable){
+                lendings.remove(e);
+            }
+        }
     }
 }
