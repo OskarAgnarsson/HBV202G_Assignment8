@@ -1,5 +1,6 @@
 package is.hi.hbv202g.ass8;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,10 +42,63 @@ public class UserInterface {
     }
 
     private void facultyInterface() {
-        List<FacultyMember> facultyMembers;
-
+        List<User> facultyMembers = new ArrayList<>();
+        for (User u: librarySystem.getUsers()) {
+            if (u instanceof FacultyMember) {
+                facultyMembers.add(u);
+            }
+        }
         while (true) {
-            System.out.println("");
+            int cnt = 1;
+            System.out.println("Select a Faculty Member");
+            for (User u: facultyMembers) {
+                System.out.println(cnt+". "+u.getName());
+                cnt++;
+            }
+            System.out.println(cnt+". Exit");
+            User facultyMember;
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(": ");
+            int input = scanner.nextInt();
+
+            if (input >= 1 && input <= facultyMembers.size()) {
+                facultyMember = facultyMembers.get(input-1);
+                while(true) {
+                    System.out.println("What do you want to do?");
+                    System.out.println("1. Extend Lending");
+                    System.out.println("2. Borrow Lendable");
+                    System.out.println("3. Return Lendable");
+                    System.out.println("4. Exit");
+
+                    System.out.print(": ");
+                    int input1 = scanner.nextInt();
+
+                    if (input1 == 1) {
+                        //librarySystem.extendLending();
+                        break;
+                    }
+                    else if (input1 == 2) {
+                        break;
+                    }
+                    else if (input1 == 3) {
+                        break;
+                    }
+                    else if (input1 == 4) {
+                        break;
+                    }
+                    else {
+                        System.out.println("Invalid Input");
+                    }
+
+                }
+                break;
+            }
+            else if (input == cnt) {
+                break;
+            }
+            else {
+                System.out.println("Invalid input");
+            }
         }
     }
 

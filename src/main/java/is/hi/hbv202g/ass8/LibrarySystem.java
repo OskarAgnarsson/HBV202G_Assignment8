@@ -86,4 +86,8 @@ public class LibrarySystem {
             }
         }
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
 }
