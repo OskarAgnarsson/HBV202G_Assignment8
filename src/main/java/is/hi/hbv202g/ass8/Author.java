@@ -1,17 +1,17 @@
 package is.hi.hbv202g.ass8;
 
 public class Author {
-    private String author;
+    private String name;
 
     public Author(String name){
-        this.author = name;
+        this.name = name;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return name;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorName(String author) {
+        this.name = author;
     }
 }
