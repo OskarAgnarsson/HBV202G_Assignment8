@@ -30,7 +30,7 @@ public class LibrarySystem {
        lendables.add(new Book("Harry Potter and the Chamber of Secrets", harrypotterauthor));
     }
 
-    public void addBookWithTitleAndAuthorList(String title, List<Author> authorList) throws EmptyAuthorListException{
+    public void addLendable(String title, List<Author> authorList) throws EmptyAuthorListException{
         if (authorList.isEmpty()) {
             throw new EmptyAuthorListException("Author list cannot be empty");
         }
@@ -80,14 +80,25 @@ public class LibrarySystem {
     }
 
     public void returnLendable(User user, Lendable lendable) {
+        int cnt = 0;
         for(Lending e : lendings){
             if (e.getLendable() == lendable){
-                lendings.remove(e);
+                break;
             }
+            cnt++;
         }
+        lendings.remove(cnt);
     }
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public List<Lending> getLendings() {
+        return lendings;
+    }
+
+    public List<Lendable> getLendables() {
+        return lendables;
     }
 }
