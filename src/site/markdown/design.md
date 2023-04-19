@@ -1,3 +1,3 @@
 # Class Diagram
 
-![UML Class Diagram](Class diagram.png)
+![UML Class Diagram](Class-diagram.png)

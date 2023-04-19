@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class BookCollectionTest {
     private Book book1;
@@ -33,12 +33,13 @@ public class BookCollectionTest {
     @Test
     public void testAddBook(){
         bookCollection.addBook(book2);
-        assertEquals(2,bookCollection.getBooks().size());
+        assertTrue(bookCollection.getBooks().contains(book2));
+
     }
     @Test
     public void testRemoveBook(){
         bookCollection.removeBook(book1);
-        assertEquals(1,bookCollection.getBooks().size());
+        assertFalse(bookCollection.getBooks().contains(book1));
     }
     @Test
     public void testGetBooks(){

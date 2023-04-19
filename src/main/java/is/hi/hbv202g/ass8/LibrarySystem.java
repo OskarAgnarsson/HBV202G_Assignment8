@@ -30,17 +30,20 @@ public class LibrarySystem {
        lendables.add(new Book("Harry Potter and the Chamber of Secrets", harrypotterauthor));
     }
 
-    public void addBookWithTitleAndAuthorList(String title, List<Author> authorList) throws EmptyAuthorListException{
-        if (authorList.isEmpty()) {
-            throw new EmptyAuthorListException("Author list cannot be empty");
+    public Lendable addLendable(String title, List<Author> authorList)throws EmptyAuthorListException{
+        if(authorList.isEmpty()){
+            throw new EmptyAuthorListException("Author lsit cannot be empty");
         }
         Lendable lendable = new Book(title, authorList);
         lendables.add(lendable);
+        return lendable;
     }
 
-    public void addStudentUser(String name, boolean feePaid) {
+
+    public User addStudentUser(String name, boolean feePaid) {
         User user = new Student(name, feePaid);
         users.add(user);
+        return user;
     }
 
     public void addFacultyMemberUser(String name, String department) {
@@ -54,7 +57,7 @@ public class LibrarySystem {
                 return lendable;
             }
         }
-        throw new UserOrLendableDoesNotExistException("Book does not exist");
+        throw new UserOrLendableDoesNotExistException("Book or book collection does not exist");
     }
 
     public User findUserByName(String name) throws UserOrLendableDoesNotExistException {
@@ -66,9 +69,10 @@ public class LibrarySystem {
         throw new UserOrLendableDoesNotExistException("User does not exist");
     }
 
-    public void borrowLendable(User user, Lendable lendable) {
+    public Lending borrowLendable(User user, Lendable lendable) {
         Lending lending = new Lending(lendable, user);
         lendings.add(lending);
+        return lending;
     }
 
     public void extendLending(Lendable lendable, LocalDate newDueDate) {
@@ -83,11 +87,18 @@ public class LibrarySystem {
         for(Lending e : lendings){
             if (e.getLendable() == lendable){
                 lendings.remove(e);
+                break;
             }
         }
     }
 
     public List<User> getUsers() {
         return users;
+    }
+    public List<Lendable> getLendables(){
+        return lendables;
+    }
+    public List<Lending> getLendings(){
+        return lendings;
     }
 }

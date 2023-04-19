@@ -9,15 +9,15 @@ import static org.junit.Assert.assertEquals;
 public class AuthorTest {
     private Author author;
 
-    public static final String JOHN = "JOHN";
+    public static final String nameofauthor = "NAME_OF_AUTHOR";
 
     @Before
     public void setup(){
-        Author author = new Author(JOHN);
+        author = new Author(nameofauthor);
     }
     @Test
     public void getNameOfAuthor(){
-        assertEquals(JOHN, author.getAuthorName());
+        assertEquals("NAME_OF_AUTHOR", author.getAuthorName());
     }
 
 }

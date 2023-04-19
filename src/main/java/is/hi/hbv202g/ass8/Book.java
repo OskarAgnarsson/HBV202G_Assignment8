@@ -1,5 +1,6 @@
 package is.hi.hbv202g.ass8;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Book implements Lendable {
@@ -26,7 +27,6 @@ public class Book implements Lendable {
             throw new EmptyAuthorListException("Author list is empty");
         }
         this.authors = authors;
-
     }
 
     public String getTitle() {
@@ -37,3 +37,4 @@ public class Book implements Lendable {
         this.title = title;
     }
 }
+
