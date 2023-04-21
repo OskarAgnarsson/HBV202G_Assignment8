@@ -10,7 +10,11 @@ public class BookCollection implements Lendable {
     public BookCollection(List<Book> books, String title){
         this.books = books;
         this.title = title;
+    }
 
+    public BookCollection(String title) {
+        this.books = new ArrayList<Book>();
+        this.title = title;
     }
 
     public List<Book> getBooks(){

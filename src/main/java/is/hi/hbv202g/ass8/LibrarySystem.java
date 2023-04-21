@@ -30,11 +30,10 @@ public class LibrarySystem {
        lendables.add(new Book("Harry Potter and the Chamber of Secrets", harrypotterauthor));
     }
 
-    public Lendable addLendable(String title, List<Author> authorList)throws EmptyAuthorListException{
-        if(authorList.isEmpty()){
-            throw new EmptyAuthorListException("Author lsit cannot be empty");
+    public Lendable addLendable(Lendable lendable)throws EmptyAuthorListException{
+        if(lendable.getAuthors().isEmpty()){
+            throw new EmptyAuthorListException("Author list cannot be empty");
         }
-        Lendable lendable = new Book(title, authorList);
         lendables.add(lendable);
         return lendable;
     }
