@@ -46,7 +46,7 @@ public class LibrarySystemTest {
         author = new Author(nameofauthor);
         authors = new ArrayList<>();
         authors.add(author);
-        librarySystem.addLendable(nameofbook, authors);
+        librarySystem.addLendable(new Book(nameofbook, authors));
         assertTrue(librarySystem.getLendables().contains(librarySystem.findLendableByTitle(nameofbook)));
     }
     @Test
@@ -59,7 +59,7 @@ public class LibrarySystemTest {
         author = new Author(nameofauthor);
         authors = new ArrayList<>();
         authors.add(author);
-        Lendable lendable = librarySystem.addLendable(nameofbook, authors);
+        Lendable lendable = librarySystem.addLendable(new Book(nameofbook, authors));
         assertTrue(librarySystem.getLendables().contains(lendable));
     }
     @Test
@@ -68,7 +68,7 @@ public class LibrarySystemTest {
         authors = new ArrayList<>();
         authors.add(author);
         librarySystem.addStudentUser(nameofstudent, feePaid);
-        Lendable lendable = librarySystem.addLendable(nameofbook, authors);
+        Lendable lendable = librarySystem.addLendable(new Book(nameofbook, authors));
         lending = librarySystem.borrowLendable(librarySystem.findUserByName(nameofstudent), lendable);
         assertTrue(librarySystem.getLendings().contains(lending));
     }
@@ -78,7 +78,7 @@ public class LibrarySystemTest {
         authors = new ArrayList<>();
         authors.add(author);
         librarySystem.addStudentUser(nameofstudent, feePaid);
-        Lendable lendable = librarySystem.addLendable(nameofbook, authors);
+        Lendable lendable = librarySystem.addLendable(new Book(nameofbook, authors));
         lending = librarySystem.borrowLendable(librarySystem.findUserByName(nameofstudent), lendable);
         librarySystem.returnLendable(librarySystem.findUserByName(nameofstudent), lendable);
         assertFalse(librarySystem.getLendings().contains(lending));
@@ -89,7 +89,7 @@ public class LibrarySystemTest {
         authors = new ArrayList<>();
         authors.add(author);
         librarySystem.addStudentUser(nameofstudent, feePaid);
-        Lendable lendable = librarySystem.addLendable(nameofbook, authors);
+        Lendable lendable = librarySystem.addLendable(new Book(nameofbook, authors));
         lending = librarySystem.borrowLendable(librarySystem.findUserByName(nameofstudent), lendable);
         lending.setDueDate(LocalDate.ofEpochDay(2007-3-12));
         librarySystem.extendLending(lendable,LocalDate.ofEpochDay(2027-3-12) );
@@ -106,7 +106,7 @@ public class LibrarySystemTest {
         authors = new ArrayList<>();
         authors.add(author);
         librarySystem.addStudentUser(nameofstudent, feePaid);
-        Lendable lendable = librarySystem.addLendable(nameofbook, authors);
+        Lendable lendable = librarySystem.addLendable(new Book(nameofbook, authors));
         assertTrue(librarySystem.getLendables().contains(lendable));
     }
     @Test
@@ -115,7 +115,7 @@ public class LibrarySystemTest {
         authors = new ArrayList<>();
         authors.add(author);
         User user = librarySystem.addStudentUser(nameofstudent, feePaid);
-        Lendable lendable = librarySystem.addLendable(nameofbook, authors);
+        Lendable lendable = librarySystem.addLendable(new Book(nameofbook, authors));
         lending = librarySystem.borrowLendable(user, lendable);
         assertTrue(librarySystem.getLendings().contains(lending));
     }
